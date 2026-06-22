@@ -1,0 +1,1 @@
+fixtures personalizados (setup/teardow reutilizable)
