@@ -1,36 +1,24 @@
 import { test as base, expect} from '@playwright/test';
-import { RegisterPage } from '../pages/RegisterPage';
+import { RegisterPage } from '../pages/RegisterPage'; 
+import { createUser, User } from '../utils/userFactory';
 
-interface RegisteredUser {
-    username: string;
-    email: string;
-    password: string;
-};
 
-export const test = base.extend<{ registeredUser: RegisteredUser }>({
+export const test = base.extend<{ registeredUser: User }>({
     registeredUser: async ({ page }, use) => {
-        const uniqueUsername = `qa-user-${Date.now()}`;
-        const uniqueEmail = `qa-${Date.now()}@testemail.com`;
-        const password = "123456789";
+        const registeredUser = createUser();
         const registerPage = new RegisterPage(page);
 
-        const registeredUserData = {
-            username: uniqueUsername,
-            email: uniqueEmail,
-            password: password
-        }
-
         await registerPage.goToSignUpPage();
-        await registerPage.fullSignUpFlow(uniqueUsername, uniqueEmail, password);
+        await registerPage.fullSignUpFlow(registeredUser.username, registeredUser.email, registeredUser.password);
 
-        await expect(page.getByRole("link", {name: uniqueUsername})).toBeVisible();
+        await expect(page.getByRole("link", {name: registeredUser.username})).toBeVisible();
 
         await page.context().clearCookies();
         await page.evaluate(() => localStorage.clear());
 
         await page.reload();
 
-        await use(registeredUserData);
+        await use(registeredUser);
 
     },
 });
