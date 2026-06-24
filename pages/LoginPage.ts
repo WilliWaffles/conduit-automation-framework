@@ -28,6 +28,16 @@ export class LoginPage {
         await this.signInBtn.click();
     }
 
+    async loginAndWaitForHome() {
+        await this.signInBtn.click();
+        await this.page.waitForURL("https://demo.realworld.show/");
+    }
+
+    async submitAndWaitForErrorMsg() {
+        await this.signInBtn.click();
+        await this.invalidCredMsg.waitFor({state: "visible"});
+    };
+
     async fullLoginFlow(email: string, password: string) {
         await this.fillCredentials(email, password);
         await this.submit();

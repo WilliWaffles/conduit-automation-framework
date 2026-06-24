@@ -27,6 +27,7 @@ export class RegisterPage {
 
     async submit() {
         await this.signUpBtn.click();
+        await this.page.waitForURL("https://demo.realworld.show/");
     }
 
     async fullSignUpFlow(username: string, email: string, password: string) {

@@ -16,7 +16,7 @@ test('User can login with correct credentials', async ({page, registeredUser}) =
     await expect(loginPage.signInBtn).toBeEnabled();
 
     // Step 3: Submit info and Verify login
-    await loginPage.submit();
+    await loginPage.loginAndWaitForHome();
 
     await expect(page).toHaveURL("https://demo.realworld.show/");
     await expect(page.getByRole("link", {name: registeredUser.username})).toBeVisible();
@@ -38,7 +38,7 @@ test('User cannot login with invalid credentials', async ({page}) => {
     await expect(loginPage.signInBtn).toBeEnabled();
 
     // Step 3: Submit info and Verify error message
-    await loginPage.submit();
+    await loginPage.submitAndWaitForErrorMsg();
 
     await expect(loginPage.invalidCredMsg).toBeVisible();
     await expect(page).toHaveURL("https://demo.realworld.show/login");
