@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { test } from '../fixtures/auth.fixtures';
 
-test('User can login with correct credentials', async ({page, registeredUser}) => {
+test('User can login with correct credentials', { tag: ['@smoke', '@regression'] }, async ({page, registeredUser}) => {
     const loginPage = new LoginPage(page);
     
     // Step 1: Go to Sign in page
@@ -22,7 +22,7 @@ test('User can login with correct credentials', async ({page, registeredUser}) =
     await expect(page.getByRole("link", {name: registeredUser.username})).toBeVisible();
 });
 
-test('User cannot login with invalid credentials', async ({page}) => {
+test('User cannot login with invalid credentials', { tag: '@regression'}, async ({page}) => {
     const loginPage = new LoginPage(page);
 
     // Step 1: Go to Sign in page

@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test'
 import { RegisterPage } from '../pages/RegisterPage';
 import { createUser } from '../utils/userFactory';
 
-test('User can create an account', async ({page}) => {
+test('User can create an account', { tag: '@regression' }, async ({page}) => {
     const registerPage = new RegisterPage(page);
 
     // Step 1: Go to sign up page
