@@ -1,0 +1,20 @@
+import { test, expect } from '@playwright/test';
+import { createUser, type User } from '../../utils/userFactory';
+
+test('User creation request successful', async ({ request }) => {
+    const userData: User = createUser();
+    const response = await request.post('https://api.realworld.show/api/users', {
+        data: {
+            user: {
+            username: userData.username,
+            email: userData.email,
+            password: userData.password
+            }
+        }
+    })
+    const responseJson = await response.json();
+
+    expect(response.status()).toBe(201);    
+    expect(responseJson).toHaveProperty('user');
+    expect(responseJson.user).toHaveProperty('token');
+});
