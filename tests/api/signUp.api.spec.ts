@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { createUser, type User } from '../../utils/userFactory';
 import { test } from '../../fixtures/api.fixtures';
 
-test('User creation request successful', async ({ request }) => {
+test('User creation request successful', { tag: ['@smoke', '@regression'] }, async ({ request }) => {
     const userData: User = createUser();
     const response = await request.post('https://api.realworld.show/api/users', {
         data: {
@@ -20,7 +20,7 @@ test('User creation request successful', async ({ request }) => {
     expect(responseJson.user).toHaveProperty('token');
 });
 
-test('User creation request fails due missing password', async ({ request }) => {
+test('User creation request fails due missing password', { tag: '@regression' }, async ({ request }) => {
     const userData: User = createUser();
     const response = await request.post('https://api.realworld.show/api/users', {
         data: {
