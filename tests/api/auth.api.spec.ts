@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { createUser, type User } from '../../utils/userFactory';
+import { test } from '../../fixtures/api.fixtures';
 
 test('User creation request successful', async ({ request }) => {
     const userData: User = createUser();
@@ -19,23 +20,12 @@ test('User creation request successful', async ({ request }) => {
     expect(responseJson.user).toHaveProperty('token');
 });
 
-test('User registered can login successfully', async ({ request }) => {
-    const userData: User = createUser();
-    request.post('https://api.realworld.show/api/users', {
-        data: {
-            user:{
-                username: userData.username,
-                email: userData.email,
-                password: userData.password
-            }
-        }
-    })
-
+test('User registered can login successfully', async ({ request, registeredUser}) => {
     const loginResponse = await request.post('https://api.realworld.show/api/users/login', {
         data: {
             user: {
-                email: userData.email,
-                password: userData.password
+                email: registeredUser.email,
+                password: registeredUser.password
             }
         }
     })
