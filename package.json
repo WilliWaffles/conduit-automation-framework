@@ -6,7 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "smoke-test": "playwright test --grep @smoke",
-    "regression-test": "playwright test --grep @regression"
+    "regression-test": "playwright test --grep @regression",
+    "test:ui": "playwright test tests/ui/",
+    "test:api": "playwright test tests/api/"
   },
   "keywords": [],
   "author": "",
