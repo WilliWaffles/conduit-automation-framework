@@ -5,17 +5,22 @@ export class HomePage {
     readonly users: Locator;
     readonly likePostBtn: Locator;
     readonly unlikePostBtn: Locator;
+    readonly posts: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.users = page.locator(".author");
         this.likePostBtn = page.locator(".btn.btn-sm.btn-outline-primary");
         this.unlikePostBtn = page.locator(".btn.btn-sm.btn-primary");
-
+        this.posts = page.getByRole("heading");
     }
 
     async selectUserProfile() {
         await this.users.first().click();
+    }
+
+    async selectPost() {
+        await this.posts.first().click();
     }
 
     async likePost() {
