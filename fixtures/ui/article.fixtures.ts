@@ -1,6 +1,6 @@
-import { createArticle, type Article } from '../utils/articleFactory';
+import { createArticle, type Article } from '../../utils/articleFactory';
 import { test as base } from './auth.fixtures';
-import { ArticleCreatorPage } from '../pages/ArticleCreatorPage';
+import { ArticleCreatorPage } from '../../pages/ArticleCreatorPage';
 
 export const test = base.extend<{ publishedArticle: Article }>({
     // publishedArticle: object containing unique title. Also contains summary, body, and a list of tags

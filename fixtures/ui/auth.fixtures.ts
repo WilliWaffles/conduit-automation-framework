@@ -1,6 +1,6 @@
 import { test as base, expect} from '@playwright/test';
-import { RegisterPage } from '../pages/RegisterPage'; 
-import { createUser, User } from '../utils/userFactory';
+import { RegisterPage } from '../../pages/RegisterPage'; 
+import { createUser, User } from '../../utils/userFactory';
 
 
 export const test = base.extend<{ registeredUser: User, registeredLoggedUser: User }>({
