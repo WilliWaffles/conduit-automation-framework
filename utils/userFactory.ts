@@ -4,6 +4,10 @@ export interface User {
     password: string;
 };
 
+export interface UserPlusToken extends User {
+    token: string;
+}
+
 export function createUser(): User {
     return {
         username: `qa-user-${Date.now()}`,
