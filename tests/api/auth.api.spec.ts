@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../fixtures/api.fixtures';
+import { test } from '../../fixtures/api/signUp.api.fixtures';
 
 test('User registered can login successfully', { tag: ['@smoke', '@regression'] }, async ({ request, registeredUser}) => {
     const loginResponse = await request.post('https://api.realworld.show/api/users/login', {
