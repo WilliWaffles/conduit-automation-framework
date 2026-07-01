@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
-import { test } from '../../fixtures/auth.fixtures';
+import { test } from '../../fixtures/ui/article.fixtures';
 
 test('User can login with correct credentials', { tag: ['@smoke', '@regression'] }, async ({page, registeredUser}) => {
     const loginPage = new LoginPage(page);

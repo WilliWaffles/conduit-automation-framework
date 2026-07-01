@@ -1,4 +1,4 @@
-import { test } from '../../fixtures/auth.fixtures';
+import { test } from '../../fixtures/ui/article.fixtures';
 import { expect } from '@playwright/test';
 import { HomePage } from '../../pages/HomePage';
 import { UserArticlePage } from '../../pages/UserArticlePage';

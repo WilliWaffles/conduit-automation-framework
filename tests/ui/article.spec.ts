@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { ArticleCreatorPage } from '../../pages/ArticleCreatorPage';
 import { createArticle } from '../../utils/articleFactory';
 import { ArticleEditorPage } from '../../pages/ArticleEditorPage';
-import { test } from '../../fixtures/article.fixtures';
+import { test } from '../../fixtures/ui/article.fixtures';
 
 
 test('User can publish a valid article and visualize it', { tag: ['@smoke', '@regression'] }, async ({ page, registeredLoggedUser}) => {
